@@ -29,7 +29,7 @@ on:
 jobs:
   # This workflow contains a single job called "email"
   if_pushed:
-    if: github.event.push == true
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
