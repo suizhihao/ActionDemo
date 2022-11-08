@@ -21,10 +21,9 @@ on:
       - created
   schedule:
     - cron: "0 0 12 * *"
-  
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
+  # # Allows you to run this workflow manually from the Actions tab
+  # workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -42,7 +41,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Repo has just pushed
-          body: 
+          body: ""
           from: ${{ secrets.MAIL_USERNAME }}
           to: ${{ secrets.MAIL_TOUSERNAME }}
   if_pulled:
@@ -58,7 +57,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: repo is pulled
-          body: 
+          body: ""
           from: ${{ secrets.MAIL_USERNAME }}
           to: ${{ secrets.MAIL_TOUSERNAME }}
   if_watched:
@@ -90,7 +89,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: issure thing happens
-          body: 
+          body: ""
           from: ${{ secrets.MAIL_USERNAME }}
           to: ${{ secrets.MAIL_TOUSERNAME }}
   if_labelled:
@@ -106,7 +105,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: project is labelled
-          body: 
+          body: ""
           from: ${{ secrets.MAIL_USERNAME }}
           to: ${{ secrets.MAIL_TOUSERNAME }}
   if_scheduled:
@@ -122,6 +121,6 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: cicd is scheduled
-          body: 
+          body: ""
           from: ${{ secrets.MAIL_USERNAME }}
           to: ${{ secrets.MAIL_TOUSERNAME }}
