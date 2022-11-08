@@ -1,0 +1,132 @@
+name: Send email
+description: Send an email to multiple recipients when github actions happpend to this repo.
+author: suizhihao
+branding:
+  icon: mail
+  color: blue
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
+  watch:
+    types:
+      - started
+  issues:
+    types:
+      - opened
+      - labeled
+  label:
+    types:
+      - created
+  schedule:
+    - cron: "0 0 12 * *"
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "email"
+  if_pushed:
+    if: github.event.push == true
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: ✨ Send email when a new push happens
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: Repo has just pushed
+          body: 
+          from: ${{ secrets.MAIL_USERNAME }}
+          to: ${{ secrets.MAIL_TOUSERNAME }}
+  if_pulled:
+    if: github.event.pull_request == true
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: ✨ Send email when repo has just been pulled
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: repo is pulled
+          body: 
+          from: ${{ secrets.MAIL_USERNAME }}
+          to: ${{ secrets.MAIL_TOUSERNAME }}
+  if_watched:
+    if: github.event.watch == true
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: ✨ Send email when have new star
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: Your a star ✨
+          body: ${{ github.actor}} just starred your mail-on-star repo!!! ${{ github.repository }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          to: ${{ secrets.MAIL_TOUSERNAME }}
+  if_issued:
+    if: github.event.issues == true
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: ✨ Send email when issue thing happens
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: issure thing happens
+          body: 
+          from: ${{ secrets.MAIL_USERNAME }}
+          to: ${{ secrets.MAIL_TOUSERNAME }}
+  if_labelled:
+    if: github.event.label == true
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: ✨ Send email when labelled
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: project is labelled
+          body: 
+          from: ${{ secrets.MAIL_USERNAME }}
+          to: ${{ secrets.MAIL_TOUSERNAME }}
+  if_scheduled:
+    if: github.event.schedule == true
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: ✨ Send email when cicd is scheduled
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: cicd is scheduled
+          body: 
+          from: ${{ secrets.MAIL_USERNAME }}
+          to: ${{ secrets.MAIL_TOUSERNAME }}
