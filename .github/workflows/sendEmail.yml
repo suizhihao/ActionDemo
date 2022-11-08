@@ -1,9 +1,4 @@
 name: Send email
-description: Send an email to multiple recipients when github actions happpend to this repo.
-author: suizhihao
-branding:
-  icon: mail
-  color: blue
 
 # Controls when the action will run.
 on:
