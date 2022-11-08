@@ -14,8 +14,8 @@ jobs:
     - name: Send email
       uses: dawidd6/action-send-mail@v3
       with:
-        server_address: smtp.qq.com
-        server_port: 465
+        server_address: smtp.partner.outlook.cn
+        server_port: 587
         username: ${{secrets.MAIL_USERNAME}}
         password: ${{secrets.MAIL_PASSWORD}}
         subject: Github Actions job result
