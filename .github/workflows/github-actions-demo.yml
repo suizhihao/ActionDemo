@@ -20,6 +20,6 @@ jobs:
         password: ${{secrets.MAIL_PASSWORD}}
         subject: Github Actions job result
         to: ${{secrets.MAIL_TOUSERNAME}}
-        from: Luke Skywalker # <user@example.com>
+        from: suizhihao 
         body: Build job of ${{github.repository}} completed successfully! ${{steps.git_log.outputs.log}}
 
